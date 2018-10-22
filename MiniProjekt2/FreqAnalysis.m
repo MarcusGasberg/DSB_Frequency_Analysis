@@ -16,6 +16,7 @@ s1 = y(1:fs*T_stop);
 
 %Plot signal
 figure(1);
+subplot(2,2,1);
 plot(t,s1);
 ylabel('Amplitude');
 xlabel('Time (s)');
@@ -28,10 +29,9 @@ f_axis = 0:delta_f:fs-delta_f;
 
 
 
-%Plot for signals and frequency spectrum
-figure(2); clf
 %Plot frequency spectrum for X
-subplot(2,1,1);
+figure(1);
+subplot(2,2,2);
 semilogx(f_axis(1:0.5*end), 20*log10(abs((2/length(X))*X(1:0.5*end))))
 xlabel('Frequency [Hz]')
 ylabel('[dB]')
@@ -54,8 +54,16 @@ fprintf('Energy relationship: %f\n', E_low/E_high);
 s1_hann = s1.*hann(length(s1))';
 X_hann = fft(s1_hann,length(s1_hann));
 
+figure(1);
+subplot(2,2,3);
+plot(t,s1_hann);
+ylabel('Amplitude');
+xlabel('Time (s)');
+title('Hanning window on signal');
+
 %plot frequency spectrum for X_hann
-subplot(2,1,2);
+figure(1);
+subplot(2,2,4);
 semilogx(f_axis(1:0.5*end), 20*log10(abs((2/length(X_hann))*X_hann(1:0.5*end))))
 xlabel('Frequency [Hz]')
 ylabel('[dB]')

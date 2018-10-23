@@ -1,12 +1,12 @@
-function [outputArg1,outputArg2] = FreqAnalysis(inputArg1,inputArg2)
+function [X_out,f_out] = FreqAnalysis(S,T)
 %FREQANALYSIS 
-%inputArg1: signal
-%inputArg2: Amount of time to analyze
-%outputArg1: Fourier transformation X
-%outputArg2: Frequency Axis
-[y, fs] = audioread(inputArg1);
-fprintf('Frequency Analysis for %s\n', inputArg1);
-T_stop = inputArg2;
+%S: signal
+%T: Amount of time to analyze
+%X_out: Fourier transformation X
+%f_out: Frequency Axis
+[y, fs] = audioread(S);
+fprintf('Frequency Analysis for %s\n', S);
+T_stop = T;
 
 %Time axis for 0:T_stop
 t=0:1/fs:T_stop-1/fs;
@@ -20,7 +20,7 @@ subplot(2,2,1);
 plot(t,s1);
 ylabel('Amplitude');
 xlabel('Time (s)');
-title(inputArg1);
+title(S);
 
 %FFT
 X = fft(s1,length(s1));
@@ -76,7 +76,7 @@ hold on
 semilogx(F, 20*log10(abs((2/length(X_hann))*X_smooth_hann)))
 hold off
 
-outputArg1 = X;
-outputArg2 = f_axis;
+X_out = X;
+f_out = f_axis;
 end
 

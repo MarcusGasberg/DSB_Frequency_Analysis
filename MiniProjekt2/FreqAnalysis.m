@@ -41,7 +41,7 @@ hold on
 %  Smooths the spectrum in X sampled by fs in 1/M octaves
 %  The two-element vector stst contains start and stop frequencies,
 [F, X_smooth] = oct_smooth(X, fs, 18,[1 20000]);
-semilogx(F, 20*log10(abs((2/length(X_smooth))*X_smooth)))
+semilogx(F, 20*log10(abs((2/length(X))*X_smooth)))
 hold off
 
 E_low = 1/length(X)*sum(abs(X(1:round(40/delta_f)).^2));
@@ -73,7 +73,7 @@ hold on
 %  Smooths the spectrum in X sampled by fs in 1/M octaves
 %  The two-element vector stst contains start and stop frequencies,
 [F, X_smooth_hann] = oct_smooth(X_hann, fs, 18,[1 20000]);
-semilogx(F, 20*log10(abs((2/length(X_smooth_hann))*X_smooth_hann)))
+semilogx(F, 20*log10(abs((2/length(X_hann))*X_smooth_hann)))
 hold off
 
 outputArg1 = X;
